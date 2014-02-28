@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) CGFloat contentViewFrameUpperPadding;
 @property (nonatomic, readonly) CGRect leftButtonFrame;
 @property (nonatomic, readonly) CGRect rightButtonFrame;
+@property (nonatomic, readonly) CGRect titleLabelFrame;
 
 @end
 
@@ -25,6 +26,8 @@
 
 
 @implementation RNBVCNavbar
+
+@synthesize titleLabel = _titleLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -49,6 +52,11 @@
     [_contentView setFrame:self.contentViewFrame];
     [_leftButton setFrame:self.leftButtonFrame];
     [_rightButton setFrame:self.rightButtonFrame];
+
+    if (_titleLabel)
+    {
+        [_titleLabel setFrame:self.titleLabelFrame];
+    }
 }
 
 #pragma mark - Setters
@@ -91,6 +99,20 @@
 }
 
 #pragma mark - Getters
+-(UILabel *)titleLabel
+{
+    if (!_titleLabel)
+    {
+        _titleLabel = [UILabel new];
+        [_titleLabel setBackgroundColor:[UIColor clearColor]];
+        [_titleLabel setUserInteractionEnabled:NO];
+        [_titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [_contentView addSubview:_titleLabel];
+    }
+
+    return _titleLabel;
+}
+
 -(CGFloat)height
 {
     return 44.0f + self.contentViewFrameUpperPadding;
@@ -125,6 +147,11 @@
     CGRect contentViewFrame = self.contentViewFrame;
     CGFloat height = CGRectGetHeight(contentViewFrame);
     return (CGRect){CGRectGetWidth(contentViewFrame) - height,0,height,height};
+}
+
+-(CGRect)titleLabelFrame
+{
+    return (CGRect){0,0,self.contentViewFrame.size};
 }
 
 @end

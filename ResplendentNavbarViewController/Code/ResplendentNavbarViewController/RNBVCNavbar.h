@@ -17,6 +17,8 @@
     UIView* _contentView;
 }
 
+@property (nonatomic, readonly) UILabel* titleLabel;
+
 @property (nonatomic, strong) UIButton* leftButton;
 @property (nonatomic, strong) UIButton* rightButton;
 
