@@ -21,7 +21,10 @@
 @property (nonatomic, readonly) Class titleLabelClass;
 
 @property (nonatomic, strong) UIButton* leftButton;
+@property (nonatomic, assign) CGRect leftButtonFrame;
+
 @property (nonatomic, strong) UIButton* rightButton;
+@property (nonatomic, assign) CGRect rightButtonFrame;
 
 @property (nonatomic, readonly) CGRect contentViewFrame;
 @property (nonatomic, readonly) CGFloat contentViewFrameBottomPadding;

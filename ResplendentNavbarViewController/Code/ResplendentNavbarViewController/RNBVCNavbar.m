@@ -19,8 +19,8 @@
 
 @property (nonatomic, readonly) CGFloat contentViewFrameUpperPadding;
 
-@property (nonatomic, readonly) CGRect leftButtonFrame;
-@property (nonatomic, readonly) CGRect rightButtonFrame;
+//@property (nonatomic, readonly) CGRect leftButtonFrame;
+//@property (nonatomic, readonly) CGRect rightButtonFrame;
 @property (nonatomic, readonly) CGRect titleLabelFrame;
 
 @end
