@@ -18,6 +18,7 @@
 }
 
 @property (nonatomic, readonly) UILabel* titleLabel;
+@property (nonatomic, readonly) Class titleLabelClass;
 
 @property (nonatomic, strong) UIButton* leftButton;
 @property (nonatomic, strong) UIButton* rightButton;

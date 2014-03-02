@@ -14,6 +14,9 @@
 
 @interface RNBVCNavbar ()
 
+@property (nonatomic, readonly) Class _titleLabelClass;
+@property (nonatomic, readonly) Class defaultTitleLabelClass;
+
 @property (nonatomic, readonly) CGFloat contentViewFrameUpperPadding;
 @property (nonatomic, readonly) CGRect leftButtonFrame;
 @property (nonatomic, readonly) CGRect rightButtonFrame;
@@ -57,6 +60,32 @@
     {
         [_titleLabel setFrame:self.titleLabelFrame];
     }
+}
+
+#pragma mark - titleLabelClass
+-(Class)_titleLabelClass
+{
+    Class titleLabelClass = self.titleLabelClass;
+    Class defaultTitleLabelClass = self.defaultTitleLabelClass;
+
+//    NSAssert((kRUClassOrNil(titleLabelClass, defaultTitleLabelClass) != nil)
+    NSAssert(((titleLabelClass == defaultTitleLabelClass) ||
+              ([titleLabelClass isSubclassOfClass:defaultTitleLabelClass]))
+             , @"navbar class %@ must be kind of class %@",titleLabelClass,defaultTitleLabelClass);
+
+//    if (titleLabelClass != defaultTitleLabelClass &&
+//        ![titleLabelClass defaultTitleLabelClass:defaultNavbarClass])
+//    {
+//        //        [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"navbar class %@ must be kind of class %@",navbarClass,defaultNavbarClass] userInfo:nil];
+//        [NSException exceptionWithName:NSInternalInconsistencyException reason:RUStringWithFormat(@"navbar class %@ must be kind of class %@",navbarClass,defaultNavbarClass) userInfo:nil];
+//    }
+    
+    return titleLabelClass;
+}
+
+-(Class)defaultTitleLabelClass
+{
+    return [UILabel class];
 }
 
 #pragma mark - Setters
@@ -103,7 +132,7 @@
 {
     if (!_titleLabel)
     {
-        _titleLabel = [UILabel new];
+        _titleLabel = [self._titleLabelClass new];
         [_titleLabel setBackgroundColor:[UIColor clearColor]];
         [_titleLabel setUserInteractionEnabled:NO];
         [_titleLabel setTextAlignment:NSTextAlignmentCenter];
