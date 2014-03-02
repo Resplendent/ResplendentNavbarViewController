@@ -18,6 +18,7 @@
 @property (nonatomic, readonly) Class defaultTitleLabelClass;
 
 @property (nonatomic, readonly) CGFloat contentViewFrameUpperPadding;
+
 @property (nonatomic, readonly) CGRect leftButtonFrame;
 @property (nonatomic, readonly) CGRect rightButtonFrame;
 @property (nonatomic, readonly) CGRect titleLabelFrame;
@@ -68,18 +69,10 @@
     Class titleLabelClass = self.titleLabelClass;
     Class defaultTitleLabelClass = self.defaultTitleLabelClass;
 
-//    NSAssert((kRUClassOrNil(titleLabelClass, defaultTitleLabelClass) != nil)
     NSAssert(((titleLabelClass == defaultTitleLabelClass) ||
               ([titleLabelClass isSubclassOfClass:defaultTitleLabelClass]))
              , @"navbar class %@ must be kind of class %@",titleLabelClass,defaultTitleLabelClass);
 
-//    if (titleLabelClass != defaultTitleLabelClass &&
-//        ![titleLabelClass defaultTitleLabelClass:defaultNavbarClass])
-//    {
-//        //        [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"navbar class %@ must be kind of class %@",navbarClass,defaultNavbarClass] userInfo:nil];
-//        [NSException exceptionWithName:NSInternalInconsistencyException reason:RUStringWithFormat(@"navbar class %@ must be kind of class %@",navbarClass,defaultNavbarClass) userInfo:nil];
-//    }
-    
     return titleLabelClass;
 }
 
@@ -137,6 +130,7 @@
         [_titleLabel setUserInteractionEnabled:NO];
         [_titleLabel setTextAlignment:NSTextAlignmentCenter];
         [_contentView addSubview:_titleLabel];
+        [self setNeedsLayout];
     }
 
     return _titleLabel;
@@ -162,7 +156,7 @@
 {
     CGFloat contentViewFrameUpperPadding = self.contentViewFrameUpperPadding;
     
-    return (CGRect){0,contentViewFrameUpperPadding,CGRectGetWidth(self.bounds),CGRectGetHeight(self.bounds) - contentViewFrameUpperPadding};
+    return (CGRect){0,contentViewFrameUpperPadding,CGRectGetWidth(self.bounds),CGRectGetHeight(self.bounds) - contentViewFrameUpperPadding - self.contentViewFrameBottomPadding};
 }
 
 -(CGRect)leftButtonFrame

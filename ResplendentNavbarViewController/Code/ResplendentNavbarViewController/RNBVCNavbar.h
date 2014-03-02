@@ -24,6 +24,7 @@
 @property (nonatomic, strong) UIButton* rightButton;
 
 @property (nonatomic, readonly) CGRect contentViewFrame;
+@property (nonatomic, readonly) CGFloat contentViewFrameBottomPadding;
 
 @property (nonatomic, readonly) CGFloat height; //For overloading
 

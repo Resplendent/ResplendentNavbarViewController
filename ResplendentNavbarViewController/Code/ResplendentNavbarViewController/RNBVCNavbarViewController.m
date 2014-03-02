@@ -20,8 +20,6 @@
 @property (nonatomic, readonly) Class _navbarClass;
 @property (nonatomic, readonly) Class defaultNavbarClass;
 
-@property (nonatomic, readonly) CGRect navbarFrame;
-
 @end
 
 

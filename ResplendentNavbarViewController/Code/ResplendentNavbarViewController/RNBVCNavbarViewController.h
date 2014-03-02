@@ -22,6 +22,8 @@
 @interface RNBVCNavbarViewController : UIViewController <RNBVCNavbarClassGetter>
 
 @property (nonatomic, readonly) RNBVCNavbar* navbar;
+@property (nonatomic, readonly) CGRect navbarFrame;
+
 @property (nonatomic, readonly) CGRect contentFrame;
 
 @end
