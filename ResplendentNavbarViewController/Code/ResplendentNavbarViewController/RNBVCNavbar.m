@@ -69,11 +69,18 @@
     Class titleLabelClass = self.titleLabelClass;
     Class defaultTitleLabelClass = self.defaultTitleLabelClass;
 
-    NSAssert(((titleLabelClass == defaultTitleLabelClass) ||
-              ([titleLabelClass isSubclassOfClass:defaultTitleLabelClass]))
-             , @"navbar class %@ must be kind of class %@",titleLabelClass,defaultTitleLabelClass);
-
-    return titleLabelClass;
+    if (titleLabelClass)
+    {
+        NSAssert(((titleLabelClass == defaultTitleLabelClass) ||
+                  ([titleLabelClass isSubclassOfClass:defaultTitleLabelClass]))
+                 , @"navbar class %@ must be kind of class %@",titleLabelClass,defaultTitleLabelClass);
+        
+        return titleLabelClass;
+    }
+    else
+    {
+        return defaultTitleLabelClass;
+    }
 }
 
 -(Class)defaultTitleLabelClass
